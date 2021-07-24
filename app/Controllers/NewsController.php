@@ -2,18 +2,28 @@
 
 namespace App\Controllers;
 
+use App\Core\Controller;
 use App\Core\DB;
 use App\Core\Model;
 use App\Models\News;
 
-class NewsController
+class NewsController extends Controller
 {
 
     public function index()
     {
-        $news = (new News)->all();
+        $news = News::all();
 
-        var_dump( $news );
+        //echo json_encode($news);
+
+        $this->view('news/index', compact( 'news' ) ); // [news: $news]
     }
+
+
+    public function test( $request )
+    {
+        printf( 'SALAM, %s %s', $request->ad, $request->soyad);
+    }
+
 
 }
